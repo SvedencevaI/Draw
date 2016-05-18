@@ -1,6 +1,4 @@
-﻿/**
- * Created by 4 on 16.03.2016.
- */
+
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -21,86 +19,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
-import java.util.ArrayList;
-
-/**
- * Created by 4 on 15.03.2016.
- */
-public class Main extends Application {
-
-    public static Group root;
-
-    public static ArrayList<Rectangle> allRectangles;
-
-    public static ArrayList<Line> allLines;
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        root = new Group();
-        Scene scene = new Scene(root, 630, 710);
-        allLines = new ArrayList<Line>();
-        allRectangles = new ArrayList<Rectangle>();
-
-        //рисуем прямоугольник
-        final Rectangle rectangle = new Rectangle(1, 1, 30, 30);
-        root.getChildren().add(rectangle);
-
-        Label labelDraw = new Label("Закрасить квадрат черным - Q");
-        setElementOnScene(0, labelDraw, 10,645);
-
-        Label labelClean = new Label("Стереть черный квадрат - W");
-        setElementOnScene(1, labelClean, 10 ,670);
-
-        Label info = new Label("Перемещение: up - I, right - L,\n\t\t\t\t left - J, down - K");
-        setElementOnScene(2,info, 240, 645);
-
-        Button btnClean = new Button("Очистить");
-        btnClean.setMinWidth(100);
-        setElementOnScene(3,btnClean, 540, 685);
-
-        /*группа для radio button*/
-        ToggleGroup groupRB = new ToggleGroup();
-
-        final RadioButton rbRobot = new RadioButton();
-        rbRobot.setText("Робот");
-        rbRobot.setSelected(true);
-        rbRobot.setToggleGroup(groupRB);
-        setElementOnScene(5, rbRobot, 250, 685);
-
-        
-
-        final RadioButton rbNote = new RadioButton();
-        rbNote.setText("Нота");
-        rbNote.setToggleGroup(groupRB);
-        setElementOnScene(7, rbNote, 410, 685);
-
-        btnClean.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-                cleanAll(allRectangles);
-            }
-        });
-
-        Button btnDrawRobot = new Button("Раскрасить");
-        btnDrawRobot.setMinWidth(100);
-        setElementOnScene(4, btnDrawRobot, 540, 645);
-        btnDrawRobot.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-                if(rbRobot.isSelected()){
-                    cleanAll(allRectangles);
-                    Robot robot = new Robot();
-                    robot.DrawFigure();
-                }
-                if(rbCat.isSelected()){
-                    cleanAll(allRectangles);
-                    Cat cat = new Cat();
-                    cat.DrawFigure();
-                }
-                if(rbNote.isSelected()){
-                    cleanAll(allRectangles);
-                    Note note = new Note();
-                    note.DrawFigure();
                 }
             }
         });
